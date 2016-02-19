@@ -1,3 +1,4 @@
+
 class Algo
   def number_frequency(x)
     h = Hash.new
@@ -6,7 +7,7 @@ class Algo
   end
 
   def gcd(x, y)
-    if y > x && y % x == 0
+    if y >= x && y % x == 0
       x
     elsif x > y
       gcd(y, x)
@@ -79,46 +80,46 @@ class Algo
     end
   end
 
-  def successive_ones(n)
-  count, i = 1, 1
+  ##  Problem number 6
 
-  while i >= 0 do
-    binary_number = binary_of(i)
+  def compute_binary_numbers(n)
+    count, i = 1, 1
 
-    if binary_number.length > n
-      return count
-    end
+    while i >= 0 do
+      binary_number = binary_of(i)
 
-    count = count + 1 unless check_consecutive_ones?(binary_number)
-    i = i + 1
-  end
-end
+      if binary_number.length > n
+        return count
+      end
 
-def check_consecutive_ones?(str)
-  arr = str.split("")
-  flag = false
-
-  arr.each_with_index do |i, index|
-    if arr[index].to_i == 1 && arr[index] == arr[index + 1] 
-      flag = true
-      break
+      count = count + 1 unless check_consecutive_ones?(binary_number)
+      i = i + 1
     end
   end
 
-  flag
-end
+  def check_consecutive_ones?(str)
+    arr = str.split("")
+    flag = false
 
-def binary_of(m)
-  o = []
+    arr.each_with_index do |i, index|
+      if arr[index].to_i == 1 && arr[index] == arr[index + 1]
+        flag = true
+        break
+      end
+    end
 
-  while m >= 1 do
-    o << m % 2
-    break if m == 1
-    m = m / 2
+    flag
   end
 
-  o.reverse.join
-end
+  def binary_of(m)
+    o = []
 
-end
+    while m >= 1 do
+      o << m % 2
+      break if m == 1
+      m = m / 2
+    end
 
+    o.reverse.join
+  end
+end
