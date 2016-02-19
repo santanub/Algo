@@ -80,41 +80,45 @@ class Algo
   end
 
   def successive_ones(n)
-    count = 0
-    i = 0
-    while binary_number.length <= n do
-      binary_number = binary_of(i)
-      count = count + 1 if check_consecutive_ones?(binary_number)
-      i = i + 1
+  count, i = 1, 1
+
+  while i >= 0 do
+    binary_number = binary_of(i)
+
+    if binary_number.length > n
+      return count
     end
 
-    count + 1
+    count = count + 1 unless check_consecutive_ones?(binary_number)
+    i = i + 1
   end
+end
 
-  def check_consecutive_ones?(str)
-    arr = str.split("")
-    flag = false
+def check_consecutive_ones?(str)
+  arr = str.split("")
+  flag = false
 
-    arr.each_with_index do |i, index|
-      if arr[index] == arr[index + 1]
-        flag = true
-        return flag
-      end
+  arr.each_with_index do |i, index|
+    if arr[index].to_i == 1 && arr[index] == arr[index + 1] 
+      flag = true
+      break
     end
   end
 
-  def binary_of(m)
-    o = []
+  flag
+end
 
-    while m >= 1 do
-      o << m % 2
-      break if m == 1
-      m = m / 2
-    end
+def binary_of(m)
+  o = []
 
-    o.reverse.join
+  while m >= 1 do
+    o << m % 2
+    break if m == 1
+    m = m / 2
   end
-  successive_ones 3
-  binary_of 5
+
+  o.reverse.join
+end
+
 end
 
