@@ -82,6 +82,20 @@ class Algo
 
   ##  Problem number 6
 
+  ## recursion
+
+  def binary_rec(n)
+    if n == 1
+      return 2 ** n
+    elsif n.zero?
+      return 1
+    else
+      binary_rec(n-1) + binary_rec(n-2)
+    end
+  end
+
+  ## iterative
+
   def compute_binary_numbers(n)
     count, i = 1, 1
 
